@@ -1,0 +1,28 @@
+public class Solution{
+    public List<List<Integer>> permute(int[] nums){
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> tempList = new ArrayList<>();
+        List<Integer> tempList2 = new ArrayList<>();
+        int temp=0;
+        
+        for (int i=0; i<nums.length;i++){
+        tempList.add(nums[i]);
+        }
+        list.add(tempList);
+        for (int i=0; i<nums.length-1; i++)
+        {
+            for (int j=0; j<list.size();j++)
+            {
+                for (int k=i+1; k<nums.length; k++)
+                {
+                    tempList2=new ArrayList<>(list.get(j));
+                    // temp=tempList2.get(i);
+                    // tempList2.set(i, tempList2.get(k));
+                    // tempList2.set(k, temp);
+                    list.add(tempList2);
+                }
+            }
+        }
+        return list;
+    }
+}
