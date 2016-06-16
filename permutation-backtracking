@@ -1,0 +1,22 @@
+public class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> tempList = new ArrayList<>();
+        backtrack(result, tempList, nums);
+        return result;
+    }
+    public void backtrack(List<List<Integer>> list, List<Integer> tempList, int[] nums){
+        if (tempList.size()==nums.length){
+            // deep copy, use new ArrayList<>(), otherwise, tempList changed
+            list.add(new ArrayList<>(tempList));
+        }
+        for (int i=0; i<nums.length; i++){
+            // in case of duplicate
+            if  (tempList.contains(nums[i]))
+            continue;
+            tempList.add(nums[i]);
+            backtrack(list, tempList, nums);
+            tempList.remove(tempList.size()-1);
+        }
+    }
+}
