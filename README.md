@@ -1,0 +1,2 @@
+# lintcode
+Code for lintcode
