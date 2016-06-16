@@ -1,0 +1,24 @@
+class Solution {
+    /**
+     * @param S: A set of numbers.
+     * @return: A list of lists. All valid subsets.
+     */
+    public ArrayList<ArrayList<Integer>> subsets(int[] nums) {
+        // write your code here
+        ArrayList<ArrayList<Integer>> ls = new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        ls.add(temp);
+        Arrays.sort(nums);
+        for (int i=0; i<nums.length; i++)
+        {
+            int size= ls.size();
+            for (int j=0; j<size;j++)
+            {
+                ArrayList<Integer> s = new ArrayList<Integer>(ls.get(j));
+                s.add(nums[i]);
+                ls.add(s);
+            }
+        }
+        return ls;
+    }
+}
