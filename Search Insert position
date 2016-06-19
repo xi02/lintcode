@@ -1,0 +1,41 @@
+public class Solution {
+    /** 
+     * param A : an integer sorted array
+     * param target :  an integer to be inserted
+     * return : an integer
+     * index : return index
+     */
+     // O(n)
+    // public int searchInsert(int[] A, int target){
+    //     // write your code here
+    //     int index = 0;
+    //     for (int i = 0; i < A.length; i++){
+    //         if (target <= A[i]){
+    //             index = i;
+    //             break;
+    //         }
+    //         if (target > A[i]){
+    //             index++;
+    //         }
+    //     }
+    //     return index;
+    // }
+    // O(logn)
+    public int searchInsert(int[] A, int target){
+        int low = 0;
+        int high = A.length - 1;
+        while (low <= high){
+            int mid = (low + high) / 2;
+            if (target == A[mid]){
+                return mid;
+            }
+            if (target > A[mid]){
+                low = mid + 1;
+            }
+            if (target < A[mid]){
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+}
