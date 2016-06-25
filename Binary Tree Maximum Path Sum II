@@ -1,0 +1,16 @@
+public class Solution {
+    /**
+     * @param root the root of binary tree.
+     * @return an integer
+     */
+    public int maxPathSum2(TreeNode root) {
+        // Write your code here
+        return maxPathDown(root);
+    }
+    public int maxPathDown(TreeNode node) {
+        if (node == null) return 0;
+        int left = Math.max(0, maxPathDown(node.left));
+        int right = Math.max(0, maxPathDown(node.right));
+        return Math.max(left, right) + node.val;
+    }
+}
