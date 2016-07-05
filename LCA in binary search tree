@@ -1,0 +1,33 @@
+public class Solution {
+    /**
+     * @param root: The root of the binary search tree.
+     * @param A and B: two nodes in a Binary.
+     * @return: Return the least common ancestor(LCA) of the two nodes.
+     */
+    // public TreeNode lowestCommonAncestor(TreeNode root, TreeNode A, TreeNode B) {
+    //     // write your code here
+    //     while (true){
+    //         if (root.val < A.val && root.val < B.val){
+    //             root = root.right;
+    //         }else if (root.val > A.val && root.val > B.val){
+    //             root = root.left;
+    //         }else {
+    //             return root;
+    //         }
+    //     }
+    // }
+
+
+    
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode node1, TreeNode node2) {
+        while (true){
+            if (root.val < node1.val && root.val < node2.val){
+                root = root.right;
+            }else if (root.val > node1.val && root.val > node2.val){
+                root = root.left;
+            }else{
+                return root;
+            }
+        }
+
+}
