@@ -1,0 +1,36 @@
+public class Solution {
+    /**
+     * @param s: A string s
+     * @param dict: A dictionary of words dict
+     */
+    public boolean wordBreak(String s, Set<String> dict) {
+        // write your code here   
+        
+        boolean[] f = new boolean[s.length() + 1];
+        f[0] = true;
+        // for (int i = 1; i <= s.length(); i++){
+        //     for (int j = 0; j < i; j++){
+        //         if (f[j] && dict.contains(s.substring(j, i))){
+        //             f[i] = true;
+        //             break;
+        //         }
+        //     }
+        // }
+        // too slow
+        // faster route
+        // 将string一个一个往上面靠。 f[i-str.length()]
+        for(int i = 1; i <= s.length(); i++){
+            for(String str: dict){
+                if(str.length() <= i){
+                    if(f[i - str.length()]){
+                        if(s.substring(i-str.length(), i).equals(str)){
+                            f[i] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return f[s.length()];
+    }
+}
