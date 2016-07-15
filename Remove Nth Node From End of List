@@ -1,0 +1,34 @@
+/**
+ * Definition for ListNode.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int val) {
+ *         this.val = val;
+ *         this.next = null;
+ *     }
+ * }
+ */ 
+public class Solution {
+    /**
+     * @param head: The first node of linked list.
+     * @param n: An integer.
+     * @return: The head of linked list.
+     */
+    ListNode removeNthFromEnd(ListNode head, int n) {
+        // write your code here
+        ListNode start = new ListNode(0);
+        ListNode slow = start, fast = start;
+        slow.next = head;
+        for (int i = 1; i <= n+1; i++){
+            fast = fast.next;
+        }
+        while (fast != null){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return start.next;
+        // start.next与head的区别
+    }
+}
