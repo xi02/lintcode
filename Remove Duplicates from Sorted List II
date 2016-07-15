@@ -1,0 +1,32 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        // create two pointers, slow points to the last node which is not dup, fast points to the last node which is dup
+        // creat new ListNode dummy to save the result list
+        ListNode dummy = new ListNode(0);
+        ListNode fast = head, slow = dummy;
+        slow.next = head;
+        while(fast != null && fast.next != null){
+            while (fast.next != null && fast.val == fast.next.val){ //在移动pointer的时候一定要判断next是否为null
+                fast = fast.next;
+            }
+            if (slow.next != fast){
+                // there is dup between slow and fast
+                slow.next = fast.next;
+                fast = slow.next;
+            }else {
+                // no dup
+                slow = fast;
+                fast = fast.next;
+            }
+        }
+        return dummy.next;
+    }
+}
