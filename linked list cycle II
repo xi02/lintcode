@@ -1,0 +1,34 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        // 一定要注意判断null的情况
+        if (head == null || head.next == null){
+            return null;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while(slow != fast){
+            if(fast == null || fast.next == null){
+                return null;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // fast和slow相差的距离是一倍slow，(s+m)是n倍的环状distance
+        while (head != slow.next){
+            slow = slow.next;
+            head = head.next;
+        }
+        return head;
+    }
+}
