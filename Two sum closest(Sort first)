@@ -1,0 +1,41 @@
+public class Solution {
+    /**
+     * @param nums an integer array
+     * @param target an integer
+     * @return the difference between the sum and the target
+     */
+    public int twoSumCloset(int[] nums, int target) {
+        // Write your code here
+        // int min = Integer.MAX_VALUE;
+        // int sum = 0;
+        // for (int i = 0; i < nums.length; i++){
+        //     for (int j = i + 1; j< nums.length; j++){
+        //         sum = nums[i] + nums[j];
+        //         if (sum < target){
+        //         min = Math.min(min, (target - nums[i] - nums[j]));
+                    
+        //         }else {
+        //         min = Math.min(min, (nums[i] + nums[j] - target));    
+        //         }
+        //     }
+        // }
+        // return min;
+        
+        
+        Arrays.sort(nums);
+        int i = 0, j = nums.length - 1;
+        int diff = Integer.MAX_VALUE;
+        while (i < j){
+            if (nums[i] + nums[j] < target){
+                if (target - nums[i] - nums[j] < diff)
+                diff = target - nums[i] - nums[j];
+                i++;
+            }else {
+                if (nums[i] + nums[j] - target < diff)
+                diff = nums[i] + nums[j] - target;
+                j--;
+            }
+        }
+         return diff;
+    }
+}
