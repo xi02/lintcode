@@ -1,0 +1,24 @@
+public class Solution {
+	/** 
+     *@param nums: The integer array you should partition
+     *@param k: As description
+     *return: The index after partition
+     */
+    public int partitionArray(int[] nums, int k) {
+	    //write your code here
+	    int j = nums.length - 1;
+	    int temp = 0;
+	    for (int m = 0; m <= j; m++){
+	        if (nums[m] >= k){
+	            temp = nums[m];
+	            nums[m--] = nums[j];
+	            nums[j] = temp;
+	            j--;
+	        }else{
+	            continue;
+	        }
+	    }
+	    // 终止条件是m=j, nums[m] = nums[j] < k
+	    return j + 1;
+    }
+}
