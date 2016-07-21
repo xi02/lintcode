@@ -1,0 +1,17 @@
+class Solution {
+    /*
+     * @param nums an integer array
+     * @param k an integer
+     * @return the top k largest numbers in array
+     */
+    public int[] topk(int[] nums, int k) {
+        // Write your code here
+        int[] result = new int[k];
+        int i = nums.length - 1;
+        Arrays.sort(nums);
+        for (int n = 0; n < k; n++){
+            result[n] = nums[i--];
+        }
+        return result;
+    }
+};
