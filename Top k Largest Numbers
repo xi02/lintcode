@@ -1,0 +1,75 @@
+class Solution {
+    /*
+     * @param nums an integer array
+     * @param k an integer
+     * @return the top k largest numbers in array
+     */
+    // public int[] topk(int[] nums, int k) {
+    //     // Write your code here
+    //     int[] result = new int[k];
+    //     int i = nums.length - 1;
+    //     Arrays.sort(nums);
+    //     for (int n = 0; n < k; n++){
+    //         result[n] = nums[i--];
+    //     }
+    //     return result;
+    // }
+    
+    public int[] topk(int[] nums, int k){
+        quicksort(nums, 0, nums.length - 1, k);
+        //取前k个值付给topk result
+        //为什么要在这里sort
+        List<Integer> result = new ArrayList<Integer>();
+        for (int i = 0; i < k && i < nums.length; ++i)
+            result.add(nums[i]);
+
+        Collections.sort(result, Collections.reverseOrder());
+        int[] topk = new int[k];
+        for (int i = 0; i < k; i++){
+             topk[i] = result.get(i);
+        }
+        return topk;
+    }
+    
+    
+    // quick sort
+    public void quicksort(int[] nums, int start, int end, int k){
+        if (start >= k || end < k){
+            return;
+        }
+        
+        if (end <= start){
+            return;
+        }
+        int left = start, right = end;
+        int mid = start + (end - start)/2;
+        int pivot = nums[mid];
+        while (left <= right){
+        {
+            
+            
+            // make left > pivot and right < pivot
+            //和平时的quicksort相反，方便取前k个最大的值
+            while (left <= right && nums[left] > pivot){
+                left++;
+            }
+            while (left <= right && nums[right] < pivot){
+                right--;
+            }
+            if (left <= right){
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+                
+                left++;
+                right--;
+            }
+        }
+    }
+    if (start < right)
+    quicksort(nums, start, right, k);
+    if (end > left)
+    quicksort(nums, left, end, k);
+    }
+};
+
